@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia & Mobilidade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="asstes/logo.png" alt="Logo Tecnomob">
+        </div>
+        <div class="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="menu-overlay" id="menuOverlay">
+            <button class="close-btn" id="closeMenu">&times;</button>
+
+            <ul>
+                <li class="dropdown">
+                    <span>Menu Rápido</span>
+                    <ul class="submenu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="#especialista">contato</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#solucoesbtn">Soluções</a></li>
+                <li class="dropdown"><a href="#setores">setores</a></li>
+                <li class="dropdown"><a href="#especialista">contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Script do menu -->
+    <script>
+        const menuBtn = document.querySelector('.menu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        menuBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            menuOverlay.classList.remove('active');
+        });
+
+        dropdowns.forEach(drop => {
+            drop.addEventListener('click', () => {
+                drop.classList.toggle('open');
+            });
+        });
+    </script>
+    <!-- Hero 1 - Primeira imagem da página -->
+    <section class="hero">
+        <div class="hero-box">
+            <div class="hero-content">
+                <h1>Somos Especialistas em <br> Outsourcing de TI</h1>
+                <p>
+                    Outsourcing de Impressão, Locação de Computadores, Tablets e Smartphones,
+                    Gerenciamento de Dados e Venda de Devices para empresas.
+                </p>
+                <a href="#especialista" class="btn">Fale com um Especialista</a>
+            </div>
+        </div>
+
+    </section>
+    <!-- Segmentos Atendidos -->
+    <section class="segmentos">
+        <h2>Segmentos Atendidos</h2>
+
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="carousel">
+
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-text">
+                        <h3>Solução para o varejo</h3>
+                        <p>Agilidade de processos e potencialização do crescimento.</p>
+                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                    </div>
+                    <div class="card-img">
+                        <img src="asstes/Card-Hero1/SolucaoParaVarejo.png" alt="Consultoria TI">
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-text">
+                        <h3>Soluções para Indústrias</h3>
+                        <p>Mais Controle e produtividade nas atividades.</p>
+                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                    </div>
+                    <div class="card-img">
+                        <img src="asstes/Card-Hero1/SolucaoParaLogistica.png" alt="Consultoria TI">
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-text">
+                        <h3>Soluções para Logística</h3>
+                        <p>Softwares e hardwares personalizados para a sua operação.</p>
+                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                    </div>
+                    <div class="card-img">
+                        <img src="asstes/Card-Hero1/SolucaoParaLogisticaCarrinho.png" alt="Consultoria TI">
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-text">
+                        <h3>Soluções para Sáude</h3>
+                        <p>Mais produtividade e eficiência nas atividades cotidianas.</p>
+                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                    </div>
+                    <div class="card-img">
+                        <img src="asstes/Card-Hero1/SolucaoParaSaude.png" alt="Consultoria TI">
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="card">
+                    <div class="card-text">
+                        <h3>Soluções para Educação</h3>
+                        <p>Softwares e hardwares personalizados para a sua IES.</p>
+                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                    </div>
+                    <div class="card-img">
+                        <img src="asstes/Card-Hero1/SolucaoParaEducacao.png" alt="Consultoria TI">
+                    </div>
+                </div>
+
+                <!-- BOTÃO DO LADO ESQUERDO -->
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+    <!-- Principais soluções -->
+    <section class="solucoes" id="solucoesbtn">
+        <h2>Principais Soluções</h2>
+
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="carousel">
+
+                <!-- Card 1 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/NoteBook1.png" alt="Notebooks e Computadores">
+                    <h3>NOTEBOOKS E COMPUTADORES</h3>
+                    <p>Soluções na gestão e locação de notebooks e desktops corporativos/empresariais.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/celular.png" alt="Smartphones e Tablets">
+                    <h3>SMARTPHONES E TABLETS</h3>
+                    <p>Soluções na gestão e locação de smartphones corporativos e industriais.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/impressoraMultiFUncional.png"
+                        alt="Impressoras e Multifuncionais">
+                    <h3>IMPRESSORAS E MULTIFUNCIONAIS</h3>
+                    <p>Soluções na gestão e locação de impressoras, multifuncionais e linhas de alta performance.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Impressoras Térmicas">
+                    <h3>IMPRESSORAS TÉRMICAS</h3>
+                    <p>Soluções na gestão e locação de impressoras térmicas, etiquetas, rótulos e peças para reposição.
+                    </p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/ColetoresDeDados.png" alt="Coletores de Dados">
+                    <h3>COLETORES DE DADOS</h3>
+                    <p>Soluções na gestão e locação de coletores de dados, leitor de código de barras e coletores
+                        vestíveis.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/equipamentoRobusto.png" alt="Coletores de Dados">
+                    <h3>Equipamentos Robustos</h3>
+                    <p>Soluções na gestão e locação de locação de computadores e tablets robustos
+                        para áreas classificadas.</p>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Hero 2 - Segunda imagem da página - Soluções Consultoria -->
+    <section class="hero-2" id="setores">
+        <div class="hero-box-2">
+            <div class="hero-text-2">
+                <h2>SOLUÇÕES AUTOMATION</h2>
+                <p>Oferecemos soluções completas em identificação e captura de dados.</p>
+                <a href="#especialista" class="btn-2">Fale com um Especialista</a>
+            </div>
+
+            <div class="hero-img-2">
+                <img src="asstes/Heros/Automation.png" alt="Automation">
+            </div>
+        </div>
+    </section>
+    <!-- Hero 2 - Soluções Consultoria - Cards  -->
+    <section class="solucoes-consultoria">
+        <h2>Soluções Automation</h2>
+
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="carousel">
+
+                <!-- Card 1 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ColetorDeTela.png" alt="Coletor Alfanumérico">
+                    <h3>COLETOR TELA E ALFANUMÉRICO</h3>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/leitorCodigoBarras.png" alt="Leitor de Códigos de Barra">
+                    <h3>LEITOR DE CÓDIGOS DE BARRA</h3>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ColetorTelaTouch.png" alt="Coletores Vestíveis">
+                    <h3>COLETORES TELA TOUCH</h3>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Impressoras térmicas">
+                    <h3>IMPRESSORAS TÉRMICAS</h3>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ImpressoraPortatil.png" alt="Impressoras portáties">
+                    <h3>IMPRESSORAS PORTÁTEIS</h3>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ImpressoraECF.png" alt="Impressoras ecf">
+                    <h3>IMPRESSORAS ECF</h3>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/EtiquetaRotulos.png" alt="ETIQUETA E RÓTULOS">
+                    <h3>ETIQUETA E RÓTULOS</h3>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/Ribbon.png" alt="Impressoras">
+                    <h3>RIBBON</h3>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Hero-3 - Soluções Retail -->
+    <section class="hero-2">
+        <div class="hero-box-2">
+            <div class="hero-text-3">
+                <h2>SOLUÇÕES RETAIL</h2>
+                <p>Soluções Integradas para modernizar e automatizar a comunicação no varejo.</p>
+                <a href="#especialista" class="btn-3">Fale com um Especialista</a>
+            </div>
+
+            <div class="hero-img-3">
+                <img src="asstes/Heros/Retail.png" alt="Automation">
+            </div>
+        </div>
+    </section>
+    <section class="solucoes-consultoria">
+        <h2>Soluções Retail</h2>
+
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="carousel">
+
+                <!-- Card 1 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Retail/Totem.png" alt="Coletor Alfanumérico">
+                    <h3>TOTENS DE AUTOATENDIMENTO</h3>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Leitor de Códigos de Barra">
+                    <h3>IMPRESSORAS TÉRMICAS</h3>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ColetorDeTela.png" alt="Coletores Tela Touch">
+                    <h3>COLETORES TELA E ALFANUMÉRICO</h3>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/leitorCodigoBarras.png" alt="Coletores Vestíveis">
+                    <h3>LEITOR DE CÓDIGO DE BARRAS</h3>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ImpressoraPortatil.png" alt="Impressoras">
+                    <h3>IMPRESSORAS PORTÁTEIS</h3>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Retail/Computador.png" alt="Impressoras">
+                    <h3>COMPUTADORES PREMIUM</h3>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Retail/cpu.png" alt="Impressoras">
+                    <h3>CPU'S PREMIUM</h3>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ImpressoraECF.png" alt="Impressoras">
+                    <h3>IMPRESSORAS A3</h3>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Retail/Impressora.png" alt="Impressoras">
+                    <h3>IMPRESSORAS ECF</h3>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Hero-4-->
+    <section class="hero-2">
+        <div class="hero-box-2">
+            <div class="hero-text-4">
+                <h2>SOLUÇÃO PRINTER</h2>
+                <p>Somos especialistas em outsourcing e gestão de parques de impressão.</p>
+                <a href="#especialista" class="btn-4">Fale com um Especialista</a>
+            </div>
+
+            <div class="hero-img-4">
+                <img src="asstes/Heros/Printer.png" alt="Automation">
+            </div>
+        </div>
+    </section>
+    <section class="solucoes-consultoria">
+        <h2>Soluções Printer</h2>
+
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="carousel">
+
+                <!-- Card 1 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Retail/Impressora.png" alt="Coletor Alfanumérico">
+                    <h3>IMPRESSORAS A3</h3>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Leitor de Códigos de Barra">
+                    <h3>IMPRESSORAS TÉRMICAS</h3>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ImpressoraECF.png" alt="Coletores Tela Touch">
+                    <h3>IMPRESSORAS ECF</h3>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/ImpressoraPortatil.png" alt="Coletores Vestíveis">
+                    <h3>IMPRESSORAS PORTÁTEIS</h3>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/EtiquetaRotulos.png" alt="Impressoras">
+                    <h3>ETIQUETAS E RÓTULOS</h3>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Automation/Ribbon.png" alt="Impressoras">
+                    <h3>RIBBON</h3>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- HERO 5  -->
+
+    <section class="hero-2">
+        <div class="hero-box-2">
+            <div class="hero-text-5">
+                <h2>SOLUÇÕES DEVICES</h2>
+                <p>Aumente a produtividade e reduza custos com as nossas soluções de <strong> TI. </strong></p>
+                <a href="#especialista" class="btn-5">Fale com um Especialista</a>
+            </div>
+
+            <div class="hero-img-5">
+                <img src="asstes/Heros/Devices.png" alt="Automation">
+            </div>
+        </div>
+    </section>
+    <section class="solucoes-consultoria">
+        <h2>Soluções Devices</h2>
+
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="carousel">
+
+                <!-- Card 1 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Retail/Computador.png" alt="Coletor Alfanumérico">
+                    <h3>LINHA PREMIUM</h3>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Devices/Notebook1.png" alt="Leitor de Códigos de Barra">
+                    <h3>LINHA CORPORATIVA</h3>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Devices/Notebook2.png" alt="Coletores Tela Touch">
+                    <h3>LINHA MAINSTREAM</h3>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Devices/Notebook3.png" alt="Coletores Vestíveis">
+                    <h3>LINHA OPTIMIZADOS</h3>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Devices/workStation.png" alt="Impressoras">
+                    <h3>WORKSTATION</h3>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Devices/Monitores.png" alt="Impressoras">
+                    <h3>MONITORES</h3>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="solucao-card">
+                    <img src="asstes/Cards-Devices/TecladoMouse.png" alt="Impressoras">
+                    <h3>TECLADOS E MOUSES</h3>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+    <h1 id="especialista">Contate um especialista</h1>
+    <!-- Formulário -->
+<form id="formulario" method="POST" action="enviar.php" autocomplete="on">
+  <!-- Cliente -->
+  <label for="cliente">Cliente *</label>
+  <input type="text" id="cliente" name="cliente" placeholder="Nome Da Empresa" required>
+
+  <!-- CNPJ -->
+  <label for="cnpj">CNPJ do Cliente *</label>
+  <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00" required>
+  <div class="erro">⚠ Insira um número.</div>
+
+  <!-- Contato -->
+  <label for="contato">Nome Completo do Contato *</label>
+  <input type="text" id="contato" name="contato" placeholder="Nome Completo" required>
+
+  <div class="row">
+    <div class="col">
+      <label for="telefone">Telefone do Cliente *</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="(00) 0000-0000" required>
+    </div>
+    <div class="col">
+      <label for="email">E-mail do Cliente *</label>
+      <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <label for="tipoOportunidade">Tipo de Oportunidade *</label>
+      <select id="tipoOportunidade" name="tipoOportunidade" required>
+        <option value="">-- Escolha uma opção --</option>
+        <option value="recorrencia">Recorrência</option>
+        <option value="distribuicao">Distribuição</option>
+      </select>
+      <div class="erro">⚠ Escolha uma opção.</div>
+    </div>
+
+    <div class="col">
+      <label for="tipoSolucao">Tipo de Solução Apresentada *</label>
+      <select id="tipoSolucao" name="tipoSolucao" required>
+        <option value="">-- Escolha uma opção --</option>
+        <option value="automation">Soluções Automation</option>
+        <option value="retail">Soluções Retail</option>
+        <option value="printer">Soluções Printer</option>
+        <option value="devices">Soluções Devices</option>
+      </select>
+      <div class="erro">⚠ Escolha uma opção.</div>
+    </div>
+  </div>
+
+  <label for="descricao">Descrição da OPP *</label>
+  <textarea id="descricao" name="descricao" rows="4" placeholder="Detalhe a oportunidade ao máximo" required></textarea>
+  <div class="erro">⚠ Insira uma resposta.</div>
+
+  <!-- Honeypot anti-spam (fica escondido no CSS) -->
+  <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
+
+  <button type="submit">Enviar</button>
+</form>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- Coluna 1 - Logo + descrição -->
+            <div class="footer-col">
+                <img src="asstes/logo.png" alt="Logo Tecnomob" class="footer-logo">
+                <p>
+                    Somos especialistas em outsourcing de impressão, locação de computadores, notebooks,
+                    gerenciamento de dados e venda de equipamentos para empresas.
+                </p>
+            </div>
+
+            <!-- Coluna 2 - Contato -->
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p>
+                    Rua Hercilio Fides Zimmermann, 265 - 1º andar<br>
+                    CEP: 89116-650 - Margem Esquerda - Gaspar – SC
+                </p>
+                <p>suporte@glatzon.com.br</p>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+
+            <!-- Coluna 3 - Menu -->
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="#formulario">Contato</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 4 - Políticas -->
+            <div class="footer-col">
+                <h4>Políticas</h4>
+                <ul>
+                    <li><a href="termosUso.html">Termos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Todos os direitos reservados a Grupo Glatz</p>
+        </div>
+    </footer>
+
+
+
+    <!--Script do formulário CNPJ e NUMERO-TELEFONE-->>
+    <script>
+        // ======= MÁSCARA GENÉRICA =======
+        function aplicarMascara(input, regex, replacer, maxLen) {
+            input.addEventListener("input", () => {
+                let valor = input.value.replace(/\D/g, "").slice(0, maxLen);
+                input.value = valor.replace(regex, replacer);
+            });
+        }
+
+        // ======= CNPJ =======
+        const cnpjInput = document.getElementById("cnpj");
+
+        // Máscara
+        aplicarMascara(
+            cnpjInput,
+            /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
+            "$1.$2.$3/$4-$5",
+            14
+        );
+
+        // Validação simplificada: apenas 14 dígitos
+        function validarCNPJ(cnpj) {
+            cnpj = cnpj.replace(/\D/g, ""); // remove não dígitos
+            return cnpj.length === 14;      // só verifica quantidade
+        }
+
+        // Quando sair do campo (blur), valida
+        cnpjInput.addEventListener("blur", () => {
+            if (cnpjInput.value && !validarCNPJ(cnpjInput.value)) {
+                cnpjInput.setCustomValidity("CNPJ deve conter 14 dígitos");
+            } else {
+                cnpjInput.setCustomValidity("");
+            }
+        });
+
+        // ======= TELEFONE =======
+        const telInput = document.getElementById("telefone");
+        telInput.addEventListener("input", () => {
+            let v = telInput.value.replace(/\D/g, "").slice(0, 11);
+
+            // celular (11 dígitos) ou fixo (10 dígitos)
+            telInput.value = v.length > 10
+                ? v.replace(/^(\d{2})(\d)(\d{4})(\d{4})$/, "($1) $2 $3-$4")
+                : v.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3");
+        });
+    </script>
+
+    <!-- Java Script Dos Cards-->
+    <script>
+        const carousels = document.querySelectorAll('.carousel-container');
+
+        carousels.forEach(container => {
+            const carousel = container.querySelector('.carousel');
+            const prev = container.querySelector('.prev');
+            const next = container.querySelector('.next');
+
+            function smoothScrollBy(element, distance, duration) {
+                let start = element.scrollLeft;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    element.scrollLeft = start + distance * progress;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+
+                requestAnimationFrame(animation);
+            }
+
+            next.addEventListener('click', () => {
+                smoothScrollBy(carousel, 320, 500);
+            });
+
+            prev.addEventListener('click', () => {
+                smoothScrollBy(carousel, -320, 500);
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

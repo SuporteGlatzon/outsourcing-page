@@ -1,0 +1,985 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #fff;
+}
+
+.header {
+    position: fixed;
+    /* fixa no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* ocupa toda a largura */
+    background: #fff;
+    /* cor de fundo (pode mudar) */
+    z-index: 1000;
+    /* fica acima dos outros elementos */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    /* sombra leve */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+/* ajusta o conteúdo pra não ficar embaixo do header */
+body {
+    padding-top: 90px;
+    /* mesmo tamanho da altura do header */
+}
+
+.header .logo img {
+    height: 50px;
+    width: 120px;
+    border-radius: 6px;
+}
+
+/* Container do menu lateral */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    /* escondido por padrão */
+    width: 350px;
+    height: 100%;
+    background: #fff;
+    /* fundo branco */
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Quando ativo */
+.menu-overlay.active {
+    right: 0;
+}
+
+/* Botão de fechar */
+.menu-overlay .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Lista principal */
+.menu-overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 60px 0 0;
+}
+
+.menu-overlay li {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Texto dentro do menu */
+.menu-overlay span,
+.menu-overlay a {
+    color: #222 !important;
+    /* força a cor */
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+/* Hover */
+.menu-overlay a:hover,
+.menu-overlay span:hover {
+    color: #0077cc;
+}
+
+/* Submenu (escondido por padrão) */
+.submenu {
+    display: none;
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+.dropdown.open .submenu {
+    display: block;
+}
+
+.submenu li {
+    border: none;
+    padding: 6px 0;
+}
+
+.submenu a {
+    font-size: 14px;
+}
+
+.submenu a:hover {
+    color: #0077cc;
+}
+
+/* Dropdown toggle */
+.dropdown.open .submenu {
+    display: block;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.menu span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+}
+
+
+/* Hero */
+.hero {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.hero-box {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    background: url("asstes/Heros/Hero1.png") no-repeat center/cover;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+}
+
+.hero-content h1 {
+    margin-bottom: 20px;
+    line-height: 2;
+}
+
+.hero-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* SEGMENTOS ATENDIDOS*/
+.segmentos {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    color: #000;
+}
+
+.segmentos h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: 262626;
+}
+
+/* CARDS */
+.card {
+    flex: 0 0 350px;
+    /* largura */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    gap: 15px;
+}
+
+.card-text {
+    flex: 1;
+}
+
+.card-text h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.card-text p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.btn-card {
+    padding: 6px 12px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #000;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.btn-card:hover {
+    background: #000;
+    color: #fff;
+}
+
+.card-img {
+    flex: 0 0 120px;
+    /* largura fixa para a imagem */
+    height: 100px;
+    /* altura fixa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* imagem preenche certinho */
+    border-radius: 10px;
+}
+
+
+/* Principais Soluções  */
+
+.solucoes {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    color: #000;
+}
+
+.solucoes h2 {
+    font-size: 1.8rem;
+
+    color: #000;
+}
+
+/* Container em grid flexível */
+.solucoes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+/* Card Solução*/
+.solucao-card {
+    flex: 0 0 220px;
+    /* largura fixa */
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.solucao-card:hover {
+    transform: translateY(-5px);
+}
+
+.solucao-card img {
+    border-radius: 16px;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    /* mantém proporção da imagem */
+}
+
+.solucao-card h3 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.solucao-card p {
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+
+
+
+/* Hero 2 - Segunda Imagem */
+.hero-2 {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.hero-box-2 {
+    display: flex;
+    align-items: stretch;
+    /* garante alturas iguais */
+    border-radius: 20px;
+    overflow: hidden;
+    /* cantos arredondados valem pros dois lados */
+    min-height: 320px;
+}
+
+
+/* Lado do texto (fundo azul) */
+.hero-text-2 {
+    flex: 1;
+    background: #d9ebff;
+    /* azul claro */
+    padding: 40px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-2 h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #003366;
+    /* azul escuro */
+}
+
+.hero-text-2 p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-2 {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 2px solid #003366;
+    border-radius: 30px;
+    color: #003366;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-2:hover {
+    background: #003366;
+    color: #fff;
+}
+
+/* Lado da imagem “complementando” */
+.hero-img-2 {
+    flex: 1;
+    position: relative;
+    min-height: 320px;
+    /* garante área pra imagem mesmo se o texto for curto */
+}
+
+.hero-img-2 img {
+    position: absolute;
+    inset: 0;
+    /* top/right/bottom/left = 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* cobre toda a metade, sem deformar */
+    display: block;
+    /* elimina espaços fantasmas */
+}
+
+/* Hero 2 - Cards */
+
+.solucoes-consultoria {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    color: #000;
+}
+
+.solucoes-consultoria h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #000;
+    text-align: left;
+}
+
+
+
+/* Lado do texto (fundo azul) */
+.hero-text-3 {
+    flex: 1;
+    background: #F5962C;
+    padding: 40px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-3 h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #D24715;
+    /* azul escuro */
+}
+
+.hero-text-3 p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-3 {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 2px solid #D24715;
+    border-radius: 30px;
+    color: #D24715;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-3:hover {
+    background: #D24715;
+    color: #fff;
+}
+
+/* Lado da imagem “complementando” */
+.hero-img-3 {
+    flex: 1;
+    position: relative;
+    min-height: 320px;
+    /* garante área pra imagem mesmo se o texto for curto */
+}
+
+.hero-img-3 img {
+    position: absolute;
+    inset: 0;
+    /* top/right/bottom/left = 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* cobre toda a metade, sem deformar */
+    display: block;
+    /* elimina espaços fantasmas */
+}
+
+/* Lado do texto (fundo azul) */
+.hero-text-4 {
+    flex: 1;
+    background: #BF8586;
+    padding: 40px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-4 h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #7E1D22;
+    /* azul escuro */
+}
+
+.hero-text-4 p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-4 {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 2px solid #7E1D22;
+    border-radius: 30px;
+    color: #7E1D22;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-4:hover {
+    background: #7E1D22;
+    color: #fff;
+}
+
+/* Lado da imagem “complementando” */
+.hero-img-4 {
+    flex: 1;
+    position: relative;
+    min-height: 320px;
+    /* garante área pra imagem mesmo se o texto for curto */
+}
+
+.hero-img-4 img {
+    position: absolute;
+    inset: 0;
+    /* top/right/bottom/left = 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* cobre toda a metade, sem deformar */
+    display: block;
+    /* elimina espaços fantasmas */
+}
+
+
+
+/* Lado do texto (fundo azul) */
+.hero-text-5 {
+    flex: 1;
+    background: #BBBBBB;
+    padding: 40px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-5 h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #727485;
+    /* azul escuro */
+}
+
+.hero-text-5 p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-5 {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 2px solid #727485;
+    border-radius: 30px;
+    color: #727485;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-5:hover {
+    background: #727485;
+    color: #fff;
+}
+
+/* Lado da imagem “complementando” */
+.hero-img-5 {
+    flex: 1;
+    position: relative;
+    min-height: 320px;
+    /* garante área pra imagem mesmo se o texto for curto */
+}
+
+.hero-img-5 img {
+    position: absolute;
+    inset: 0;
+    /* top/right/bottom/left = 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* cobre toda a metade, sem deformar */
+    display: block;
+    /* elimina espaços fantasmas */
+}
+
+#especialista {
+  display: flex;
+  justify-content: center;  /* centraliza horizontal */
+  align-items: center;      /* centraliza vertical */
+  background: #fff;         /* fundo branco, pode trocar */
+  text-align: center;
+  color: #000;
+}
+
+/* Container do formulário */
+form {
+    background: #fff;
+    padding: 20px 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: "Arial", sans-serif;
+}
+
+/* Labels */
+form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Inputs, selects e textarea */
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: #f9fafc;
+    border-radius: 4px 4px 0 0;
+    transition: border-color 0.3s ease;
+}
+
+/* Placeholder cinza */
+form input::placeholder,
+form textarea::placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+/* Foco azul */
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #0077cc;
+    outline: none;
+}
+
+/* Campos inválidos = borda vermelha */
+form input:invalid,
+form select:invalid,
+form textarea:invalid {
+    border-color: #d93025;
+}
+
+/* Layout em duas colunas */
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.row .col {
+    flex: 1;
+}
+
+/* Mensagem de erro */
+.erro {
+    color: #d93025;
+    font-size: 13px;
+    margin-top: 4px;
+    display: none;
+}
+
+input:invalid+.erro,
+select:invalid+.erro,
+textarea:invalid+.erro {
+    display: block;
+}
+
+/* Botão */
+form button {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+/*Footer*/
+form button:hover {
+    background: #000;
+}
+
+.footer {
+  background: #fff;
+  padding: 50px 10% 20px;
+  border-top: 1px solid #eee;
+  color: #333;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1 1 200px;
+}
+
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 15px;
+}
+
+.footer h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.footer p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin: 8px 0;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: 0.3s;
+}
+
+.footer ul li a:hover {
+  color: #0077cc;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #666;
+}
+
+
+/* Remove setas de inputs numéricos (só por segurança) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+
+/* Responsivo: empilha no mobile */
+@media (max-width: 768px) {
+    .hero-box-2 {
+        flex-direction: column;
+    }
+
+    .hero-img-2 {
+        min-height: 220px;
+    }
+}
+
+
+
+/* CAROUSEL */
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari e Edge moderno */
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* BOTÃO MOVIMENTO CARD */
+.btn-card {
+    padding: 8px 18px;
+    border: 2px solid #000;
+    border-radius: 30px;
+    /* arredondado estilo pill */
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-card:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-container button {
+    background: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.carousel-container .prev {
+    left: -20px;
+}
+
+.carousel-container .next {
+    right: -20px;
+}
+
+
+/* PÁGINA SOBRE */
+
+.parceria {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 10%;
+}
+
+.parceria-img img {
+    width: 500px;
+    /* ajusta conforme seu layout */
+    border-radius: 15px;
+    /* cantos arredondados */
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.parceria-texto h2 {
+    font-size: 28px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #111;
+}
+
+.sobre {
+  padding: 80px 10%;
+  background: #fafafa; /* fundo leve */
+}
+
+.sobre .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sobre h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.sobre p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
+/*termos de uso*/
+
+.termos {
+  padding: 80px 10%;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.termos .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.termos h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.termos hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.termos h2 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.termos h3 {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.termos p {
+  margin-bottom: 15px;
+  text-align: justify;
+}

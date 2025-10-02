@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="asstes/logo.png" alt="Logo Tecnomob">
+        </div>
+        <div class="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="menu-overlay" id="menuOverlay">
+            <button class="close-btn" id="closeMenu">&times;</button>
+            <ul>
+                <li class="dropdown">
+                    <span>Menu Rápido</span>
+                    <ul class="submenu">
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+        </nav>
+    </header>
+    <section class="termos">
+        <div class="container">
+            <h1>Termo de Uso</h1>
+            <hr>
+
+            <p>Este perfil do site Termos de Uso é válido a partir de Janeiro 2025.</p>
+
+            <h2>TERMOS DE USO – Grupo Glatz Tecnologia e Mobilidade</h2>
+
+            <p>
+                Tecnomob Tecnologia e Mobilidade é a operadora oficial do site Grupo Glatz.com.br e serviços associados.
+                Ao acessar este website, você concorda com os termos e condições descritos neste Termo de Uso.
+            </p>
+
+            <p>
+                Caso você não esteja de acordo com qualquer uma das condições apresentadas, pedimos que não faça uso do
+                nosso site.
+                Reservamo-nos o direito de atualizar estes termos a qualquer momento.
+            </p>
+
+            <h3>Seção 1 – Usuário</h3>
+            <p>
+                Ao utilizar nossos serviços, você declara ser maior de 18 anos ou estar autorizado por seus responsáveis
+                legais.
+            </p>
+
+            <h3>Seção 2 – Aceitação</h3>
+            <p>
+                A utilização dos serviços implica a aceitação integral e irrestrita deste Termo de Uso em conjunto com a
+                Política de Privacidade.
+            </p>
+
+            <h3>Seção 3 – Confidencialidade</h3>
+            <p>
+                Empregamos os melhores esforços para manter seus dados seguros. Entretanto, não nos responsabilizamos
+                por danos decorrentes de
+                falhas de terceiros que possam comprometer sua segurança.
+            </p>
+
+            <h3>Seção 4 – Cookies</h3>
+            <p>
+                Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar a navegação, você concorda
+                com o uso de cookies
+                conforme descrito em nossa Política de Privacidade.
+            </p>
+
+            <h3>Seção 5 – Modificações</h3>
+            <p>
+                Reservamo-nos o direito de modificar ou descontinuar, temporariamente ou permanentemente, nossos
+                serviços com ou sem aviso prévio.
+            </p>
+
+            <h3>Seção 6 – Legislação Aplicável</h3>
+            <p>
+                Estes Termos de Uso serão regidos e interpretados de acordo com as leis brasileiras.
+                Qualquer litígio será submetido ao foro da comarca de São Paulo/SP.
+            </p>
+
+            <p>
+                Para mais informações, entre em contato através do e-mail: <strong>suporte@glatzon.com</strong>.
+            </p>
+        </div>
+
+         <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- Coluna 1 - Logo + descrição -->
+            <div class="footer-col">
+                <img src="asstes/logo.png" alt="Logo Tecnomob" class="footer-logo">
+                <p>
+                    Somos especialistas em outsourcing de impressão, locação de computadores, notebooks,
+                    gerenciamento de dados e venda de equipamentos para empresas.
+                </p>
+            </div>
+
+            <!-- Coluna 2 - Contato -->
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p>
+                    Rua Hercilio Fides Zimmermann, 265 - 1º andar<br>
+                    CEP: 89116-650 - Margem Esquerda - Gaspar – SC
+                </p>
+                <p>suporte@glatzon.com.br</p>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+
+            <!-- Coluna 3 - Menu -->
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 4 - Políticas -->
+            <div class="footer-col">
+                <h4>Políticas</h4>
+                <ul>
+                    <li><a href="termosUso.html">Termos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Todos os direitos reservados a Grupo Glatz</p>
+        </div>
+    </footer>
+
+    </section>
+       <script>
+        const menuBtn = document.querySelector('.menu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        menuBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            menuOverlay.classList.remove('active');
+        });
+
+        dropdowns.forEach(drop => {
+            drop.addEventListener('click', () => {
+                drop.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
