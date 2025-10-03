@@ -4,60 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia & Mobilidade</title>
+
+    <title>Grupo Glatz - Tecnologia & Mobilidade</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0A66C2" />
+
+    <!-- SEO/Compartilhamento -->
+    <link rel="canonical" href="https://www.seudominio.com/">
+    <meta name="robots" content="index,follow">
+    <meta name="description"
+        content="Especialistas em outsourcing de impressão, locação de computadores e gerenciamento de dados em SC.">
+    <meta property="og:title" content="Grupo Glatz - Tecnologia & Mobilidade">
+    <meta property="og:description"
+        content="Especialistas em outsourcing de impressão, locação de computadores e gerenciamento de dados em SC.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.seudominio.com/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/logoAba.ico">
+    <link rel="shortcut icon" href="assets/logoAba.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logoAba.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/logoAba.ico">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <!-- Preload da imagem principal do hero (melhora LCP) -->
+    <link rel="preload" as="image" href="assets/Heros/Hero1.png" fetchpriority="high">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo">
-            <img src="asstes/logo.png" alt="Logo Tecnomob">
-        </div>
-        <div class="menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav class="menu-overlay" id="menuOverlay">
-            <button class="close-btn" id="closeMenu">&times;</button>
+        <div class="container">
+            <div class="logo">
+                <a href="#"><img src="assets/logo.png" alt="Logo Grupo Glatz"></a>
+            </div>
 
-            <ul>
-                <li class="dropdown">
-                    <span>Menu Rápido</span>
-                    <ul class="submenu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="#especialista">contato</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#solucoesbtn">Soluções</a></li>
-                <li class="dropdown"><a href="#setores">setores</a></li>
-                <li class="dropdown"><a href="#especialista">contato</a></li>
-            </ul>
-        </nav>
+            <!-- mesmo markup + id/aria para acessibilidade -->
+            <div class="menu" id="menuBtn" aria-label="Abrir menu" aria-controls="menuOverlay" aria-expanded="false"
+                role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
+
+    <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <button class="close-btn" id="closeMenu" aria-label="Fechar menu">&times;</button>
+
+        <ul>
+            <li class="dropdown">
+                <span>Menu Rápido</span>
+                <ul class="submenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#solucoesbtn">Soluções</a></li>
+            <li class="dropdown"><a href="#setores">Setores</a></li>
+            <li class="dropdown"><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
     <!-- Script do menu -->
     <script>
-        const menuBtn = document.querySelector('.menu');
+        const menuBtn = document.getElementById('menuBtn') || document.querySelector('.menu');
         const menuOverlay = document.getElementById('menuOverlay');
         const closeMenu = document.getElementById('closeMenu');
         const dropdowns = document.querySelectorAll('.dropdown');
 
-        menuBtn.addEventListener('click', () => {
+        function openMenu() {
             menuOverlay.classList.add('active');
-        });
-
-        closeMenu.addEventListener('click', () => {
+            menuOverlay.setAttribute('aria-hidden', 'false');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closeMenuFn() {
             menuOverlay.classList.remove('active');
-        });
+            menuOverlay.setAttribute('aria-hidden', 'true');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', openMenu);
+            menuBtn.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMenu(); }
+            });
+        }
+        closeMenu.addEventListener('click', closeMenuFn);
 
         dropdowns.forEach(drop => {
-            drop.addEventListener('click', () => {
-                drop.classList.toggle('open');
-            });
+            drop.addEventListener('click', () => drop.classList.toggle('open'));
+        });
+
+        // Fechar menu com ESC
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenuFn();
         });
     </script>
+
     <!-- Hero 1 - Primeira imagem da página -->
     <section class="hero">
         <div class="hero-box">
@@ -67,17 +118,17 @@
                     Outsourcing de Impressão, Locação de Computadores, Tablets e Smartphones,
                     Gerenciamento de Dados e Venda de Devices para empresas.
                 </p>
-                <a href="#especialista" class="btn">Fale com um Especialista</a>
+                <a href="contato.html" class="btn">Fale com um Especialista</a>
             </div>
         </div>
-
     </section>
+
     <!-- Segmentos Atendidos -->
     <section class="segmentos">
         <h2>Segmentos Atendidos</h2>
 
         <div class="carousel-container">
-            <button class="prev">&#10094;</button>
+            <button class="prev" aria-label="Anterior">&#10094;</button>
             <div class="carousel">
 
                 <!-- Card 1 -->
@@ -85,10 +136,38 @@
                     <div class="card-text">
                         <h3>Solução para o varejo</h3>
                         <p>Agilidade de processos e potencialização do crescimento.</p>
-                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                        <a href="#" class="btn-card" data-modal="modal1">Saiba mais</a>
                     </div>
                     <div class="card-img">
-                        <img src="asstes/Card-Hero1/SolucaoParaVarejo.png" alt="Consultoria TI">
+                        <img src="assets/Card-Hero1/SolucaoParaVarejo.png" alt="Consultoria TI" loading="lazy"
+                            decoding="async">
+                    </div>
+                </div>
+
+                <!-- Modal 1 -->
+                <div id="modal1" class="modal" role="dialog" aria-modal="true" aria-labelledby="m1-title">
+                    <div class="modal-content">
+                        <span class="close" aria-label="Fechar">&times;</span>
+                        <h2 id="m1-title">Solução para o Varejo</h2>
+                        <p>
+                            Aqui você pode colocar qualquer coisa:
+                            <br>- Listas
+                            <br>- Imagens
+                            <br>- Links
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                            <br>- Texto grande explicativo
+                        </p>
                     </div>
                 </div>
 
@@ -97,106 +176,158 @@
                     <div class="card-text">
                         <h3>Soluções para Indústrias</h3>
                         <p>Mais Controle e produtividade nas atividades.</p>
-                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                        <a href="#" class="btn-card" data-modal="modal2">Saiba mais</a>
                     </div>
                     <div class="card-img">
-                        <img src="asstes/Card-Hero1/SolucaoParaLogistica.png" alt="Consultoria TI">
+                        <img src="assets/Card-Hero1/SolucaoParaLogistica.png" alt="Consultoria TI" loading="lazy"
+                            decoding="async">
                     </div>
                 </div>
+
+                <!-- Modal 2 -->
+                <div id="modal2" class="modal" role="dialog" aria-modal="true" aria-labelledby="m2-title">
+                    <div class="modal-content">
+                        <span class="close" aria-label="Fechar">&times;</span>
+                        <h2 id="m2-title">Soluções para Indústrias</h2>
+                        <p>
+                            Texto exclusivo para indústria.
+                            Aqui você escreve à vontade, sem limite de formato.
+                        </p>
+                    </div>
+                </div>
+
                 <!-- Card 3 -->
                 <div class="card">
                     <div class="card-text">
                         <h3>Soluções para Logística</h3>
                         <p>Softwares e hardwares personalizados para a sua operação.</p>
-                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                        <a href="#" class="btn-card" data-modal="modal3">Saiba mais</a>
                     </div>
                     <div class="card-img">
-                        <img src="asstes/Card-Hero1/SolucaoParaLogisticaCarrinho.png" alt="Consultoria TI">
+                        <img src="assets/Card-Hero1/SolucaoParaLogisticaCarrinho.png" alt="Consultoria TI"
+                            loading="lazy" decoding="async">
                     </div>
                 </div>
+
+                <div id="modal3" class="modal" role="dialog" aria-modal="true" aria-labelledby="m3-title">
+                    <div class="modal-content">
+                        <span class="close" aria-label="Fechar">&times;</span>
+                        <h2 id="m3-title">Soluções para Logística</h2>
+                        <p>
+                            Explicação detalhada de logística.
+                            Exemplo: como nossos softwares otimizam transporte e rastreio.
+                        </p>
+                    </div>
+                </div>
+
                 <!-- Card 4 -->
                 <div class="card">
                     <div class="card-text">
-                        <h3>Soluções para Sáude</h3>
+                        <h3>Soluções para Saúde</h3>
                         <p>Mais produtividade e eficiência nas atividades cotidianas.</p>
-                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                        <a href="#" class="btn-card" data-modal="modal4">Saiba mais</a>
                     </div>
                     <div class="card-img">
-                        <img src="asstes/Card-Hero1/SolucaoParaSaude.png" alt="Consultoria TI">
+                        <img src="assets/Card-Hero1/SolucaoParaSaude.png" alt="Consultoria TI" loading="lazy"
+                            decoding="async">
                     </div>
                 </div>
+
+                <div id="modal4" class="modal" role="dialog" aria-modal="true" aria-labelledby="m4-title">
+                    <div class="modal-content">
+                        <span class="close" aria-label="Fechar">&times;</span>
+                        <h2 id="m4-title">Soluções para Saúde</h2>
+                        <p>
+                            Sistemas pensados para clínicas, hospitais e médicos.
+                            Fale sobre integração, produtividade e segurança de dados.
+                        </p>
+                    </div>
+                </div>
+
                 <!-- Card 5 -->
                 <div class="card">
                     <div class="card-text">
                         <h3>Soluções para Educação</h3>
                         <p>Softwares e hardwares personalizados para a sua IES.</p>
-                        <a href="#especialista" class="btn-card">Saiba mais</a>
+                        <a href="#" class="btn-card" data-modal="modal5">Saiba mais</a>
                     </div>
                     <div class="card-img">
-                        <img src="asstes/Card-Hero1/SolucaoParaEducacao.png" alt="Consultoria TI">
+                        <img src="assets/Card-Hero1/SolucaoParaEducacao.png" alt="Consultoria TI" loading="lazy"
+                            decoding="async">
                     </div>
                 </div>
 
+                <div id="modal5" class="modal" role="dialog" aria-modal="true" aria-labelledby="m5-title">
+                    <div class="modal-content">
+                        <span class="close" aria-label="Fechar">&times;</span>
+                        <h2 id="m5-title">Soluções para Educação</h2>
+                        <p>
+                            Espaço livre para colocar texto longo, vídeos incorporados ou imagens.
+                            Você controla totalmente o que aparece aqui.
+                        </p>
+                    </div>
+                </div>
+
+
                 <!-- BOTÃO DO LADO ESQUERDO -->
             </div>
-            <button class="next">&#10095;</button>
+            <button class="next" aria-label="Próximo">&#10095;</button>
         </div>
     </section>
+
     <!-- Principais soluções -->
     <section class="solucoes" id="solucoesbtn">
         <h2>Principais Soluções</h2>
 
         <div class="carousel-container">
-            <button class="prev">&#10094;</button>
+            <button class="prev" aria-label="Anterior">&#10094;</button>
             <div class="carousel">
-
-                <!-- Card 1 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/NoteBook1.png" alt="Notebooks e Computadores">
+                    <img src="assets/Cards-PrincipaisSolucoes/NoteBook1.png" alt="Notebooks e Computadores"
+                        loading="lazy" decoding="async">
                     <h3>NOTEBOOKS E COMPUTADORES</h3>
                     <p>Soluções na gestão e locação de notebooks e desktops corporativos/empresariais.</p>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/celular.png" alt="Smartphones e Tablets">
+                    <img src="assets/Cards-PrincipaisSolucoes/celular.png" alt="Smartphones e Tablets" loading="lazy"
+                        decoding="async">
                     <h3>SMARTPHONES E TABLETS</h3>
                     <p>Soluções na gestão e locação de smartphones corporativos e industriais.</p>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/impressoraMultiFUncional.png"
-                        alt="Impressoras e Multifuncionais">
+                    <img src="assets/Cards-PrincipaisSolucoes/impressoraMultiFUncional.png"
+                        alt="Impressoras e Multifuncionais" loading="lazy" decoding="async">
                     <h3>IMPRESSORAS E MULTIFUNCIONAIS</h3>
                     <p>Soluções na gestão e locação de impressoras, multifuncionais e linhas de alta performance.</p>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Impressoras Térmicas">
+                    <img src="assets/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Impressoras Térmicas"
+                        loading="lazy" decoding="async">
                     <h3>IMPRESSORAS TÉRMICAS</h3>
                     <p>Soluções na gestão e locação de impressoras térmicas, etiquetas, rótulos e peças para reposição.
                     </p>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/ColetoresDeDados.png" alt="Coletores de Dados">
+                    <img src="assets/Cards-PrincipaisSolucoes/ColetoresDeDados.png" alt="Coletores de Dados"
+                        loading="lazy" decoding="async">
                     <h3>COLETORES DE DADOS</h3>
                     <p>Soluções na gestão e locação de coletores de dados, leitor de código de barras e coletores
                         vestíveis.</p>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/equipamentoRobusto.png" alt="Coletores de Dados">
+                    <img src="assets/Cards-PrincipaisSolucoes/equipamentoRobusto.png" alt="Equipamentos Robustos"
+                        loading="lazy" decoding="async">
                     <h3>Equipamentos Robustos</h3>
                     <p>Soluções na gestão e locação de locação de computadores e tablets robustos
                         para áreas classificadas.</p>
                 </div>
             </div>
-            <button class="next">&#10095;</button>
+            <button class="next" aria-label="Próximo">&#10095;</button>
         </div>
     </section>
 
@@ -204,73 +335,72 @@
     <section class="hero-2" id="setores">
         <div class="hero-box-2">
             <div class="hero-text-2">
-                <h2>SOLUÇÕES AUTOMATION</h2>
+                <h2>AUTOMATION</h2>
                 <p>Oferecemos soluções completas em identificação e captura de dados.</p>
-                <a href="#especialista" class="btn-2">Fale com um Especialista</a>
+                <a href="contato.html" class="btn-2">Fale com um Especialista</a>
             </div>
 
             <div class="hero-img-2">
-                <img src="asstes/Heros/Automation.png" alt="Automation">
+                <img src="assets/Heros/Automation.png" alt="Automation" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
+
     <!-- Hero 2 - Soluções Consultoria - Cards  -->
     <section class="solucoes-consultoria">
         <h2>Soluções Automation</h2>
 
         <div class="carousel-container">
-            <button class="prev">&#10094;</button>
+            <button class="prev" aria-label="Anterior">&#10094;</button>
             <div class="carousel">
-
-                <!-- Card 1 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ColetorDeTela.png" alt="Coletor Alfanumérico">
+                    <img src="assets/Cards-Automation/ColetorDeTela.png" alt="Coletor Alfanumérico" loading="lazy"
+                        decoding="async">
                     <h3>COLETOR TELA E ALFANUMÉRICO</h3>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/leitorCodigoBarras.png" alt="Leitor de Códigos de Barra">
+                    <img src="assets/Cards-Automation/leitorCodigoBarras.png" alt="Leitor de Códigos de Barra"
+                        loading="lazy" decoding="async">
                     <h3>LEITOR DE CÓDIGOS DE BARRA</h3>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ColetorTelaTouch.png" alt="Coletores Vestíveis">
+                    <img src="assets/Cards-Automation/ColetorTelaTouch.png" alt="Coletores Vestíveis" loading="lazy"
+                        decoding="async">
                     <h3>COLETORES TELA TOUCH</h3>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Impressoras térmicas">
+                    <img src="assets/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Impressoras térmicas"
+                        loading="lazy" decoding="async">
                     <h3>IMPRESSORAS TÉRMICAS</h3>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ImpressoraPortatil.png" alt="Impressoras portáties">
+                    <img src="assets/Cards-Automation/ImpressoraPortatil.png" alt="Impressoras portáties" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS PORTÁTEIS</h3>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ImpressoraECF.png" alt="Impressoras ecf">
+                    <img src="assets/Cards-Automation/ImpressoraECF.png" alt="Impressoras ecf" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS ECF</h3>
                 </div>
 
-                <!-- Card 7 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/EtiquetaRotulos.png" alt="ETIQUETA E RÓTULOS">
+                    <img src="assets/Cards-Automation/EtiquetaRotulos.png" alt="ETIQUETA E RÓTULOS" loading="lazy"
+                        decoding="async">
                     <h3>ETIQUETA E RÓTULOS</h3>
                 </div>
 
-                <!-- Card 8 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/Ribbon.png" alt="Impressoras">
+                    <img src="assets/Cards-Automation/Ribbon.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>RIBBON</h3>
                 </div>
             </div>
-            <button class="next">&#10095;</button>
+            <button class="next" aria-label="Próximo">&#10095;</button>
         </div>
     </section>
 
@@ -278,78 +408,74 @@
     <section class="hero-2">
         <div class="hero-box-2">
             <div class="hero-text-3">
-                <h2>SOLUÇÕES RETAIL</h2>
+                <h2>RETAIL</h2>
                 <p>Soluções Integradas para modernizar e automatizar a comunicação no varejo.</p>
-                <a href="#especialista" class="btn-3">Fale com um Especialista</a>
+                <a href="contato.html" class="btn-3">Fale com um Especialista</a>
             </div>
 
             <div class="hero-img-3">
-                <img src="asstes/Heros/Retail.png" alt="Automation">
+                <img src="assets/Heros/Retail.png" alt="Automation" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
+
     <section class="solucoes-consultoria">
         <h2>Soluções Retail</h2>
 
         <div class="carousel-container">
-            <button class="prev">&#10094;</button>
+            <button class="prev" aria-label="Anterior">&#10094;</button>
             <div class="carousel">
-
-                <!-- Card 1 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Retail/Totem.png" alt="Coletor Alfanumérico">
+                    <img src="assets/Cards-Retail/Totem.png" alt="Coletor Alfanumérico" loading="lazy" decoding="async">
                     <h3>TOTENS DE AUTOATENDIMENTO</h3>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Leitor de Códigos de Barra">
+                    <img src="assets/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Leitor de Códigos de Barra"
+                        loading="lazy" decoding="async">
                     <h3>IMPRESSORAS TÉRMICAS</h3>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ColetorDeTela.png" alt="Coletores Tela Touch">
+                    <img src="assets/Cards-Automation/ColetorDeTela.png" alt="Coletores Tela Touch" loading="lazy"
+                        decoding="async">
                     <h3>COLETORES TELA E ALFANUMÉRICO</h3>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/leitorCodigoBarras.png" alt="Coletores Vestíveis">
+                    <img src="assets/Cards-Automation/leitorCodigoBarras.png" alt="Coletores Vestíveis" loading="lazy"
+                        decoding="async">
                     <h3>LEITOR DE CÓDIGO DE BARRAS</h3>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ImpressoraPortatil.png" alt="Impressoras">
+                    <img src="assets/Cards-Automation/ImpressoraPortatil.png" alt="Impressoras" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS PORTÁTEIS</h3>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Retail/Computador.png" alt="Impressoras">
+                    <img src="assets/Cards-Retail/Computador.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>COMPUTADORES PREMIUM</h3>
                 </div>
 
-                <!-- Card 7 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Retail/cpu.png" alt="Impressoras">
+                    <img src="assets/Cards-Retail/cpu.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>CPU'S PREMIUM</h3>
                 </div>
 
-                <!-- Card 8 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ImpressoraECF.png" alt="Impressoras">
+                    <img src="assets/Cards-Automation/ImpressoraECF.png" alt="Impressoras" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS A3</h3>
                 </div>
 
-                <!-- Card 9 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Retail/Impressora.png" alt="Impressoras">
+                    <img src="assets/Cards-Retail/Impressora.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>IMPRESSORAS ECF</h3>
                 </div>
             </div>
-            <button class="next">&#10095;</button>
+            <button class="next" aria-label="Próximo">&#10095;</button>
         </div>
     </section>
 
@@ -357,242 +483,243 @@
     <section class="hero-2">
         <div class="hero-box-2">
             <div class="hero-text-4">
-                <h2>SOLUÇÃO PRINTER</h2>
+                <h2>PRINTER</h2>
                 <p>Somos especialistas em outsourcing e gestão de parques de impressão.</p>
-                <a href="#especialista" class="btn-4">Fale com um Especialista</a>
+                <a href="contato.html" class="btn-4">Fale com um Especialista</a>
             </div>
 
             <div class="hero-img-4">
-                <img src="asstes/Heros/Printer.png" alt="Automation">
+                <img src="assets/Heros/Printer.png" alt="Automation" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
+
     <section class="solucoes-consultoria">
         <h2>Soluções Printer</h2>
 
         <div class="carousel-container">
-            <button class="prev">&#10094;</button>
+            <button class="prev" aria-label="Anterior">&#10094;</button>
             <div class="carousel">
-
-                <!-- Card 1 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Retail/Impressora.png" alt="Coletor Alfanumérico">
+                    <img src="assets/Cards-Retail/Impressora.png" alt="Coletor Alfanumérico" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS A3</h3>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Leitor de Códigos de Barra">
+                    <img src="assets/Cards-PrincipaisSolucoes/ImpressoraTermica.png" alt="Leitor de Códigos de Barra"
+                        loading="lazy" decoding="async">
                     <h3>IMPRESSORAS TÉRMICAS</h3>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ImpressoraECF.png" alt="Coletores Tela Touch">
+                    <img src="assets/Cards-Automation/ImpressoraECF.png" alt="Coletores Tela Touch" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS ECF</h3>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/ImpressoraPortatil.png" alt="Coletores Vestíveis">
+                    <img src="assets/Cards-Automation/ImpressoraPortatil.png" alt="Coletores Vestíveis" loading="lazy"
+                        decoding="async">
                     <h3>IMPRESSORAS PORTÁTEIS</h3>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/EtiquetaRotulos.png" alt="Impressoras">
+                    <img src="assets/Cards-Automation/EtiquetaRotulos.png" alt="Impressoras" loading="lazy"
+                        decoding="async">
                     <h3>ETIQUETAS E RÓTULOS</h3>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Automation/Ribbon.png" alt="Impressoras">
+                    <img src="assets/Cards-Automation/Ribbon.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>RIBBON</h3>
                 </div>
             </div>
-            <button class="next">&#10095;</button>
+            <button class="next" aria-label="Próximo">&#10095;</button>
         </div>
     </section>
 
     <!-- HERO 5  -->
-
     <section class="hero-2">
         <div class="hero-box-2">
             <div class="hero-text-5">
-                <h2>SOLUÇÕES DEVICES</h2>
+                <h2>DEVICES</h2>
                 <p>Aumente a produtividade e reduza custos com as nossas soluções de <strong> TI. </strong></p>
-                <a href="#especialista" class="btn-5">Fale com um Especialista</a>
+                <a href="contato.html" class="btn-5">Fale com um Especialista</a>
             </div>
 
             <div class="hero-img-5">
-                <img src="asstes/Heros/Devices.png" alt="Automation">
+                <img src="assets/Heros/Devices.png" alt="Automation" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
+
     <section class="solucoes-consultoria">
         <h2>Soluções Devices</h2>
 
         <div class="carousel-container">
-            <button class="prev">&#10094;</button>
+            <button class="prev" aria-label="Anterior">&#10094;</button>
             <div class="carousel">
-
-                <!-- Card 1 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Retail/Computador.png" alt="Coletor Alfanumérico">
+                    <img src="assets/Cards-Retail/Computador.png" alt="Coletor Alfanumérico" loading="lazy"
+                        decoding="async">
                     <h3>LINHA PREMIUM</h3>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Devices/Notebook1.png" alt="Leitor de Códigos de Barra">
+                    <img src="assets/Cards-Devices/Notebook1.png" alt="Leitor de Códigos de Barra" loading="lazy"
+                        decoding="async">
                     <h3>LINHA CORPORATIVA</h3>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Devices/Notebook2.png" alt="Coletores Tela Touch">
+                    <img src="assets/Cards-Devices/Notebook2.png" alt="Coletores Tela Touch" loading="lazy"
+                        decoding="async">
                     <h3>LINHA MAINSTREAM</h3>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Devices/Notebook3.png" alt="Coletores Vestíveis">
+                    <img src="assets/Cards-Devices/Notebook3.png" alt="Coletores Vestíveis" loading="lazy"
+                        decoding="async">
                     <h3>LINHA OPTIMIZADOS</h3>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Devices/workStation.png" alt="Impressoras">
+                    <img src="assets/Cards-Devices/workStation.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>WORKSTATION</h3>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Devices/Monitores.png" alt="Impressoras">
+                    <img src="assets/Cards-Devices/Monitores.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>MONITORES</h3>
                 </div>
 
-                <!-- Card 7 -->
                 <div class="solucao-card">
-                    <img src="asstes/Cards-Devices/TecladoMouse.png" alt="Impressoras">
+                    <img src="assets/Cards-Devices/TecladoMouse.png" alt="Impressoras" loading="lazy" decoding="async">
                     <h3>TECLADOS E MOUSES</h3>
                 </div>
             </div>
-            <button class="next">&#10095;</button>
+            <button class="next" aria-label="Próximo">&#10095;</button>
         </div>
     </section>
+
     <h1 id="especialista">Contate um especialista</h1>
+
     <!-- Formulário -->
-<form id="formulario" method="POST" action="enviar.php" autocomplete="on">
-  <!-- Cliente -->
-  <label for="cliente">Cliente *</label>
-  <input type="text" id="cliente" name="cliente" placeholder="Nome Da Empresa" required>
+    <form id="formulario" autocomplete="on">
+        <!-- Cliente -->
+        <label for="cliente">Sua Empresa</label>
+        <input type="text" id="cliente" name="cliente" required>
 
-  <!-- CNPJ -->
-  <label for="cnpj">CNPJ do Cliente *</label>
-  <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00" required>
-  <div class="erro">⚠ Insira um número.</div>
+        <!-- CNPJ -->
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00" required>
 
-  <!-- Contato -->
-  <label for="contato">Nome Completo do Contato *</label>
-  <input type="text" id="contato" name="contato" placeholder="Nome Completo" required>
+        <!-- Contato -->
+        <label for="contato">Seu Nome Completo</label>
+        <input type="text" id="contato" name="contato" required>
 
-  <div class="row">
-    <div class="col">
-      <label for="telefone">Telefone do Cliente *</label>
-      <input type="tel" id="telefone" name="telefone" placeholder="(00) 0000-0000" required>
-    </div>
-    <div class="col">
-      <label for="email">E-mail do Cliente *</label>
-      <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required>
-    </div>
-  </div>
+        <div class="row">
+            <div class="col">
+                <label for="telefone">Telefone / Whatsapp *</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 0000-0000" required inputmode="tel"
+                    autocomplete="tel">
+            </div>
+            <div class="col">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required
+                    autocomplete="email">
+            </div>
+        </div>
 
-  <div class="row">
-    <div class="col">
-      <label for="tipoOportunidade">Tipo de Oportunidade *</label>
-      <select id="tipoOportunidade" name="tipoOportunidade" required>
-        <option value="">-- Escolha uma opção --</option>
-        <option value="recorrencia">Recorrência</option>
-        <option value="distribuicao">Distribuição</option>
-      </select>
-      <div class="erro">⚠ Escolha uma opção.</div>
-    </div>
+        <!-- (removido um </div> extra aqui que causava desalinhamento) -->
 
-    <div class="col">
-      <label for="tipoSolucao">Tipo de Solução Apresentada *</label>
-      <select id="tipoSolucao" name="tipoSolucao" required>
-        <option value="">-- Escolha uma opção --</option>
-        <option value="automation">Soluções Automation</option>
-        <option value="retail">Soluções Retail</option>
-        <option value="printer">Soluções Printer</option>
-        <option value="devices">Soluções Devices</option>
-      </select>
-      <div class="erro">⚠ Escolha uma opção.</div>
-    </div>
-  </div>
+        <label for="descricao">Mensagem</label>
+        <textarea id="descricao" name="descricao" rows="4"
+            placeholder="Detalhe a sua necessidade com o máximo de informações" required></textarea>
 
-  <label for="descricao">Descrição da OPP *</label>
-  <textarea id="descricao" name="descricao" rows="4" placeholder="Detalhe a oportunidade ao máximo" required></textarea>
-  <div class="erro">⚠ Insira uma resposta.</div>
-
-  <!-- Honeypot anti-spam (fica escondido no CSS) -->
-  <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-
-  <button type="submit">Enviar</button>
-</form>
-
+        <button type="button" id="enviarWhats">Enviar pelo WhatsApp</button>
+    </form>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <!-- COLUNA 1 — Logo + descrição -->
+                <section class="footer-col footer-about">
+                    <img src="assets/logo.png" alt="Logo Grupo Glatz" class="footer-logo-inline" loading="lazy"
+                        decoding="async" />
+                    <p class="footer-text">Sua empresa em boas mãos: outsourcing de impressão, notebooks sob demanda,
+                        gestão inteligente de dados e equipamentos de última geração.</p>
+                </section>
 
-            <!-- Coluna 1 - Logo + descrição -->
-            <div class="footer-col">
-                <img src="asstes/logo.png" alt="Logo Tecnomob" class="footer-logo">
-                <p>
-                    Somos especialistas em outsourcing de impressão, locação de computadores, notebooks,
-                    gerenciamento de dados e venda de equipamentos para empresas.
-                </p>
+                <!-- COLUNA 2 — Contato -->
+                <section class="footer-col">
+                    <h4>Contato</h4>
+                    <p>Rua Hercilio Fides Zimmermann, 285<br>
+                        Andar Superior - CEP: 89116-650<br>
+                        Gaspar - Santa Catarina
+                    </p>
+                    <p><a class="footer-link" href="mailto:comercial@grupoglatz.com.br">comercial@grupoglatz.com.br</a>
+                    </p>
+                    <p class="footer-socials">
+                        <a class="social" href="#" aria-label="LinkedIn" rel="noopener">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </p>
+                </section>
+
+                <!-- COLUNA 3 — Menu + Políticas -->
+                <section class="footer-col">
+                    <h4>Menu</h4>
+                    <ul class="footer-list">
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+
+                    <h4>Políticas</h4>
+                    <ul class="footer-list">
+                        <li><a href="termosUso.html">Termos de Uso</a></li>
+                    </ul>
+                </section>
             </div>
 
-            <!-- Coluna 2 - Contato -->
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <p>
-                    Rua Hercilio Fides Zimmermann, 265 - 1º andar<br>
-                    CEP: 89116-650 - Margem Esquerda - Gaspar – SC
-                </p>
-                <p>suporte@glatzon.com.br</p>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <div class="footer-bottom">
+                <p>© 2025 Todos os direitos reservados - Grupo Glatz (Glatzon Ltda.)</p>
             </div>
-
-            <!-- Coluna 3 - Menu -->
-            <div class="footer-col">
-                <h4>Menu</h4>
-                <ul>
-                    <li><a href="sobre.html">Sobre</a></li>
-                    <li><a href="#formulario">Contato</a></li>
-                </ul>
-            </div>
-
-            <!-- Coluna 4 - Políticas -->
-            <div class="footer-col">
-                <h4>Políticas</h4>
-                <ul>
-                    <li><a href="termosUso.html">Termos de Uso</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2025 Todos os direitos reservados a Grupo Glatz</p>
         </div>
     </footer>
-
-
-
-    <!--Script do formulário CNPJ e NUMERO-TELEFONE-->>
+    <!-- SCRIPT dos modais -->
+    <script>
+        // abrir
+        document.querySelectorAll(".btn-card").forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                const modalId = this.getAttribute("data-modal");
+                const modalEl = document.getElementById(modalId);
+                if (modalEl) modalEl.style.display = "block";
+            });
+        });
+        // fechar no X
+        document.querySelectorAll(".close").forEach(closeBtn => {
+            closeBtn.addEventListener("click", function () {
+                this.closest(".modal").style.display = "none";
+            });
+        });
+        // fechar clicando fora
+        window.addEventListener("click", function (e) {
+            if (e.target.classList.contains("modal")) {
+                e.target.style.display = "none";
+            }
+        });
+        // fechar por ESC
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
+            }
+        });
+    </script>
+    <!--Script do formulário CNPJ e NUMERO-TELEFONE-->
     <script>
         // ======= MÁSCARA GENÉRICA =======
         function aplicarMascara(input, regex, replacer, maxLen) {
@@ -604,22 +731,12 @@
 
         // ======= CNPJ =======
         const cnpjInput = document.getElementById("cnpj");
+        aplicarMascara(cnpjInput, /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5", 14);
 
-        // Máscara
-        aplicarMascara(
-            cnpjInput,
-            /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
-            "$1.$2.$3/$4-$5",
-            14
-        );
-
-        // Validação simplificada: apenas 14 dígitos
         function validarCNPJ(cnpj) {
-            cnpj = cnpj.replace(/\D/g, ""); // remove não dígitos
-            return cnpj.length === 14;      // só verifica quantidade
+            cnpj = cnpj.replace(/\D/g, "");
+            return cnpj.length === 14;
         }
-
-        // Quando sair do campo (blur), valida
         cnpjInput.addEventListener("blur", () => {
             if (cnpjInput.value && !validarCNPJ(cnpjInput.value)) {
                 cnpjInput.setCustomValidity("CNPJ deve conter 14 dígitos");
@@ -632,15 +749,37 @@
         const telInput = document.getElementById("telefone");
         telInput.addEventListener("input", () => {
             let v = telInput.value.replace(/\D/g, "").slice(0, 11);
-
-            // celular (11 dígitos) ou fixo (10 dígitos)
             telInput.value = v.length > 10
                 ? v.replace(/^(\d{2})(\d)(\d{4})(\d{4})$/, "($1) $2 $3-$4")
                 : v.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3");
         });
     </script>
 
-    <!-- Java Script Dos Cards-->
+    <!-- Script do Whats -->
+    <script>
+        document.getElementById("enviarWhats").addEventListener("click", function () {
+            const cliente = document.getElementById("cliente").value;
+            const cnpj = document.getElementById("cnpj").value;
+            const contato = document.getElementById("contato").value;
+            const telefone = document.getElementById("telefone").value;
+            const email = document.getElementById("email").value;
+            const descricao = document.getElementById("descricao").value;
+
+            const mensagem =
+                `Cliente: ${cliente}
+CNPJ: ${cnpj}
+Contato: ${contato}
+Telefone: ${telefone}
+E-mail: ${email}
+Descrição: ${descricao}`;
+
+            const numero = "554733044033";
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank", "noopener,noreferrer");
+        });
+    </script>
+
+    <!-- Java Script Dos Cards (carrosséis) -->
     <script>
         const carousels = document.querySelectorAll('.carousel-container');
 
@@ -659,25 +798,15 @@
                     const progress = Math.min(elapsed / duration, 1);
                     element.scrollLeft = start + distance * progress;
 
-                    if (progress < 1) {
-                        requestAnimationFrame(animation);
-                    }
+                    if (progress < 1) requestAnimationFrame(animation);
                 }
-
                 requestAnimationFrame(animation);
             }
 
-            next.addEventListener('click', () => {
-                smoothScrollBy(carousel, 320, 500);
-            });
-
-            prev.addEventListener('click', () => {
-                smoothScrollBy(carousel, -320, 500);
-            });
+            if (next) next.addEventListener('click', () => smoothScrollBy(carousel, 320, 500));
+            if (prev) prev.addEventListener('click', () => smoothScrollBy(carousel, -320, 500));
         });
-
     </script>
-
 </body>
 
 </html>

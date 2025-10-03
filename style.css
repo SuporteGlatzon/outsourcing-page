@@ -1,46 +1,58 @@
-/* Reset */
+﻿/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+
 }
 
 body {
     background: #fff;
     color: #fff;
-}
-
-.header {
-    position: fixed;
-    /* fixa no topo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    /* ocupa toda a largura */
-    background: #fff;
-    /* cor de fundo (pode mudar) */
-    z-index: 1000;
-    /* fica acima dos outros elementos */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    /* sombra leve */
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-}
-
-/* ajusta o conteúdo pra não ficar embaixo do header */
-body {
     padding-top: 90px;
-    /* mesmo tamanho da altura do header */
+}
+
+html { scroll-behavior: smooth; }
+:target { scroll-margin-top: 90px; }
+
+/* Cria um container centralizado que serve pra header, hero, etc */
+.container {
+  max-width: 1200px;   /* ou o mesmo que você usa na hero */
+  margin: 0 auto;
+  padding: 0 20px;     /* espaçamento lateral */
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+/* Colocar o conteúdo do header dentro do container */
+.header .container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header .logo img {
-    height: 50px;
-    width: 120px;
-    border-radius: 6px;
+    height: 50px;              /* controla o tamanho da logo */
+    width: auto;
+    display: block;
 }
 
 /* Container do menu lateral */
@@ -48,23 +60,17 @@ body {
     position: fixed;
     top: 0;
     right: -400px;
-    /* escondido por padrão */
     width: 350px;
     height: 100%;
     background: #fff;
-    /* fundo branco */
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
     transition: right 0.3s ease-in-out;
     z-index: 1000;
     padding: 50px 20px;
     display: flex;
     flex-direction: column;
 }
-
-/* Quando ativo */
-.menu-overlay.active {
-    right: 0;
-}
+.menu-overlay.active { right: 0; }
 
 /* Botão de fechar */
 .menu-overlay .close-btn {
@@ -82,68 +88,53 @@ body {
 .menu-overlay ul {
     list-style: none;
     padding: 0;
-    margin: 60px 0 0;
+    margin: 40px 0 0;   /* espaço do topo até o título */
 }
-
 .menu-overlay li {
     border-bottom: 1px solid #ddd;
-    padding: 8px;
+    padding: 8px 0;
 }
 
 /* Texto dentro do menu */
 .menu-overlay span,
 .menu-overlay a {
-    color: #222 !important;
-    /* força a cor */
+    color: #222;
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
     display: block;
     cursor: pointer;
 }
-
-/* Hover */
 .menu-overlay a:hover,
-.menu-overlay span:hover {
-    color: #0077cc;
-}
+.menu-overlay span:hover { color: #0077cc; }
 
-/* Submenu (escondido por padrão) */
+/* Submenu (ajustado) */
 .submenu {
     display: none;
-    margin-top: 8px;
-    margin-left: 15px;
+    margin: 0 ; /* espaço pequeno entre o título e os itens */
+    padding: 0px;
 }
-
-.dropdown.open .submenu {
-    display: block;
-}
-
 .submenu li {
     border: none;
-    padding: 6px 0;
+    padding: 4px 0;
 }
-
 .submenu a {
     font-size: 14px;
+    text-decoration: none;
+    color: #333;
 }
+.submenu a:hover { color: #0077cc; }
 
-.submenu a:hover {
-    color: #0077cc;
-}
+/* Quando dropdown está aberto */
+.dropdown.open .submenu { display: block; }
 
-/* Dropdown toggle */
-.dropdown.open .submenu {
-    display: block;
-}
-
+/* Botão hambúrguer */
 .menu {
     display: flex;
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
 }
-
 .menu span {
     width: 25px;
     height: 3px;
@@ -165,7 +156,7 @@ body {
     position: relative;
     width: 100%;
     min-height: 400px;
-    background: url("asstes/Heros/Hero1.png") no-repeat center/cover;
+    background: url("assets/Heros/Hero1.png") no-repeat center/cover;
     border-radius: 20px;
     overflow: hidden;
     display: flex;
@@ -263,7 +254,7 @@ body {
 }
 
 .btn-card:hover {
-    background: #000;
+    background: #adadad;
     color: #fff;
 }
 
@@ -283,6 +274,102 @@ body {
     object-fit: cover;
     /* imagem preenche certinho */
     border-radius: 10px;
+}
+/* ===== MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* impede scroll no fundo */
+  background: rgba(0,0,0,0.6);
+  animation: fadeIn .3s ease;
+}
+
+/* Caixa do modal */
+.modal-content {
+  background: #fff;
+  margin: 5% auto;
+  padding: 30px 25px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  position: relative;
+  
+  /* ALINHAMENTO CENTRAL */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* alinha no meio vertical */
+  align-items: center;     /* alinha no meio horizontal */
+  text-align: center;    
+}
+
+/* Scroll estilizado (Chrome, Edge, Safari) */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Botão fechar (X) */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #999;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+.close:hover {
+  color: #000;
+}
+
+#modal-title {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #000;
+}
+#modal-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-line;
+}
+
+
+
+/* Animações */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes scaleUp {
+  from {transform: scale(0.9); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .modal-content {
+    margin: 10% auto;
+    padding: 20px 15px;
+    max-height: 85vh;
+  }
+  #modal-title { font-size: 1.3rem; }
+  #modal-text { font-size: 0.95rem; }
 }
 
 
@@ -370,7 +457,7 @@ body {
 /* Lado do texto (fundo azul) */
 .hero-text-2 {
     flex: 1;
-    background: #d9ebff;
+    background: #dcec67;
     /* azul claro */
     padding: 40px;
     color: #000;
@@ -382,7 +469,7 @@ body {
 .hero-text-2 h2 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #003366;
+    color: #000;
     /* azul escuro */
 }
 
@@ -395,16 +482,16 @@ body {
 .btn-2 {
     display: inline-block;
     padding: 12px 25px;
-    border: 2px solid #003366;
+    border: 2px solid #000;
     border-radius: 30px;
-    color: #003366;
+    color: #000;
     text-decoration: none;
     font-weight: 600;
     transition: .3s;
 }
 
 .btn-2:hover {
-    background: #003366;
+    background-color: #b0bc52;
     color: #fff;
 }
 
@@ -449,7 +536,7 @@ body {
 /* Lado do texto (fundo azul) */
 .hero-text-3 {
     flex: 1;
-    background: #F5962C;
+    background: #ba5f10;
     padding: 40px;
     color: #000;
     display: flex;
@@ -460,7 +547,7 @@ body {
 .hero-text-3 h2 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #D24715;
+    color: #fff;
     /* azul escuro */
 }
 
@@ -468,21 +555,22 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 25px;
+    color: #fff;
 }
 
 .btn-3 {
     display: inline-block;
     padding: 12px 25px;
-    border: 2px solid #D24715;
+    border: 2px solid #fff;
     border-radius: 30px;
-    color: #D24715;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
     transition: .3s;
 }
 
 .btn-3:hover {
-    background: #D24715;
+    background-color: #944c0c;
     color: #fff;
 }
 
@@ -509,7 +597,7 @@ body {
 /* Lado do texto (fundo azul) */
 .hero-text-4 {
     flex: 1;
-    background: #BF8586;
+    background: #ac9583;
     padding: 40px;
     color: #000;
     display: flex;
@@ -520,7 +608,7 @@ body {
 .hero-text-4 h2 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #7E1D22;
+    color: #000;
     /* azul escuro */
 }
 
@@ -533,16 +621,16 @@ body {
 .btn-4 {
     display: inline-block;
     padding: 12px 25px;
-    border: 2px solid #7E1D22;
+    border: 2px solid #000;
     border-radius: 30px;
-    color: #7E1D22;
+    color: #000;
     text-decoration: none;
     font-weight: 600;
     transition: .3s;
 }
 
 .btn-4:hover {
-    background: #7E1D22;
+    background: #897768;
     color: #fff;
 }
 
@@ -604,7 +692,7 @@ body {
 }
 
 .btn-5:hover {
-    background: #727485;
+    background: #959595;
     color: #fff;
 }
 
@@ -629,12 +717,15 @@ body {
 }
 
 #especialista {
-  display: flex;
-  justify-content: center;  /* centraliza horizontal */
-  align-items: center;      /* centraliza vertical */
-  background: #fff;         /* fundo branco, pode trocar */
-  text-align: center;
-  color: #000;
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontal */
+    align-items: center;
+    /* centraliza vertical */
+    background: #fff;
+    /* fundo branco, pode trocar */
+    text-align: center;
+    color: #000;
 }
 
 /* Container do formulário */
@@ -685,12 +776,7 @@ form textarea:focus {
     outline: none;
 }
 
-/* Campos inválidos = borda vermelha */
-form input:invalid,
-form select:invalid,
-form textarea:invalid {
-    border-color: #d93025;
-}
+
 
 /* Layout em duas colunas */
 .row {
@@ -702,19 +788,6 @@ form textarea:invalid {
     flex: 1;
 }
 
-/* Mensagem de erro */
-.erro {
-    color: #d93025;
-    font-size: 13px;
-    margin-top: 4px;
-    display: none;
-}
-
-input:invalid+.erro,
-select:invalid+.erro,
-textarea:invalid+.erro {
-    display: block;
-}
 
 /* Botão */
 form button {
@@ -729,73 +802,88 @@ form button {
     transition: background 0.3s ease;
 }
 
-/*Footer*/
-form button:hover {
-    background: #000;
+/* ===== Footer ===== */
+.footer{
+  background:#fff;
+  border-top:1px solid #eee;
+  color:#333;
+  font-size:14px;
+}
+.footer-inner{
+  max-width:1200px;
+  margin:40px auto;
+  padding:3.5rem 24px 28px 3.5rem;   /* mais respiro */
 }
 
-.footer {
-  background: #fff;
-  padding: 50px 10% 20px;
-  border-top: 1px solid #eee;
-  color: #333;
-  font-size: 14px;
+/* Grid: mesma estrutura em 3 colunas no desktop */
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr; /* descrição maior */
+  gap: 12.5rem;
+  align-items:start;                    /* alinha topo das colunas (logo e “Contato” ficam na mesma linha) */
+  width:100%;
 }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 30px;
+/* Colunas */
+.footer-col{ display:flex; flex-direction:column; gap:12px; }
+.footer-col h4{
+  margin:0 0 6px;
+  font-size:16px;
+  font-weight:700;
+  color:#000;
+}
+.footer-text{ max-width:680px; line-height:1.65; }
+
+/* Logo na 1ª coluna, acima do texto */
+.footer-logo-inline{
+  display:block;
+  width:clamp(110px, 12vw, 150px);  /* tamanho controlado para não “passar” do visual do título Contato */
+  height:auto;
+  margin:0 0 10px;
 }
 
-.footer-col {
-  flex: 1 1 200px;
+/* Links/listas */
+.footer-list{ list-style:none; margin:0; padding:0; }
+.footer-list li{ margin:8px 0; }
+.footer a{
+  color:#333;
+  text-decoration:none;
+  transition:color .2s ease, opacity .2s ease;
+}
+.footer a:hover{ color:#0a66c2; }
+
+/* Social */
+.footer-socials .social{ display:inline-block; font-size:22px; line-height:1; }
+
+/* Linha final */
+.footer-bottom{
+  border-top:1px solid #eee;
+  margin-top:40px;
+  padding-top:16px;
+  text-align:center;
+  font-size:13px;
+  color:#666;
 }
 
-.footer-logo {
-  max-width: 150px;
-  margin-bottom: 15px;
+/* ===== Responsivo ===== */
+@media (max-width: 1024px){
+  .footer-grid{
+    grid-template-columns: 1.4fr 1fr;    /* 2 colunas */
+    gap:40px;
+  }
+  .footer-grid .footer-col:nth-child(3){ grid-column:1 / -1; } /* Menu/Políticas desce */
 }
 
-.footer h4 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #000;
-}
-
-.footer p {
-  margin: 5px 0;
-  line-height: 1.5;
-}
-
-.footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer ul li {
-  margin: 8px 0;
-}
-
-.footer ul li a {
-  text-decoration: none;
-  color: #333;
-  transition: 0.3s;
-}
-
-.footer ul li a:hover {
-  color: #0077cc;
-}
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 30px;
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-  font-size: 13px;
-  color: #666;
+@media (max-width: 640px){
+  .footer-grid{
+    grid-template-columns:1fr;           /* 1 coluna */
+    gap:28px;
+    justify-items:center;
+    text-align:center;
+  }
+  .footer-col{ align-items:center; }
+  .footer-text{ max-width:520px; }
+  .footer-logo-inline{ margin-left:auto; margin-right:auto; }
 }
 
 
@@ -804,11 +892,6 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-    /* Firefox */
 }
 
 
@@ -867,13 +950,13 @@ input[type=number] {
 }
 
 .carousel-container button {
-    background: white;
+    background-color: unset;
     border: none;
     font-size: 1rem;
     cursor: pointer;
     padding: 10px;
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -891,95 +974,396 @@ input[type=number] {
 
 /* PÁGINA SOBRE */
 
+/* ===== PARCERIA ===== */
 .parceria {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 40px;
     padding: 60px 10%;
+    flex-wrap: wrap; /* permite quebrar em telas menores */
 }
 
 .parceria-img img {
-    width: 500px;
-    /* ajusta conforme seu layout */
+    width: 100%;
+    max-width: 500px;
     border-radius: 15px;
-    /* cantos arredondados */
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.parceria-texto {
+    flex: 1;
+    min-width: 280px;
+    text-align: left;
+}
 .parceria-texto h2 {
-    font-size: 28px;
-    font-weight: 500;
+    font-size: clamp(20px, 2.5vw, 32px); /* responsivo automático */
+    font-weight: 600;
     text-transform: uppercase;
     line-height: 1.4;
     color: #111;
 }
 
+/* ===== SOBRE ===== */
 .sobre {
-  padding: 80px 10%;
-  background: #fafafa; /* fundo leve */
+    padding: 80px 8%;
+    background: #fafafa;
 }
-
 .sobre .container {
-  max-width: 1000px;
-  margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
-
 .sobre h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #111;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #111;
+    text-align: center;
 }
-
 .sobre p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 20px;
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 18px;
+    text-align: justify;
 }
 
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 992px) {
+    .parceria {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 5%;
+    }
+    .parceria-texto {
+        text-align: center;
+    }
+    .sobre {
+        padding: 60px 5%;
+    }
+}
+
+@media (max-width: 600px) {
+    .parceria {
+        gap: 24px;
+        padding: 40px 20px;
+    }
+    .parceria-texto h2 {
+        font-size: 20px;
+    }
+    .sobre {
+        padding: 40px 20px;
+    }
+    .sobre p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
 
 /*termos de uso*/
 
 .termos {
-  padding: 80px 10%;
-  background: #fff;
-  color: #333;
-  line-height: 1.6;
+    padding: 80px 10%;
+    background: #fff;
+    color: #333;
+    line-height: 1.6;
 }
 
 .termos .container {
-  max-width: 1000px;
-  margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .termos h1 {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .termos hr {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
 }
 
 .termos h2 {
-  font-size: 20px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .termos h3 {
-  font-size: 18px;
-  margin-top: 20px;
-  margin-bottom: 8px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 8px;
 }
 
 .termos p {
-  margin-bottom: 15px;
-  text-align: justify;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+
+@media (max-width: 992px) {
+    .termos {
+        padding: 60px 6%;
+    }
+    .termos h1 { font-size: 28px; }
+    .termos h2 { font-size: 18px; }
+    .termos h3 { font-size: 16px; }
+    .termos p  { font-size: 15px; line-height: 1.7; }
+}
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+    .termos {
+        padding: 50px 5%;
+    }
+    .termos h1 { font-size: 24px; text-align: center; }
+    .termos h2, 
+    .termos h3 { text-align: left; }
+    .termos p  { font-size: 14px; }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    .termos {
+        padding: 40px 20px;
+    }
+    .termos h1 { font-size: 20px; }
+    .termos h2 { font-size: 16px; }
+    .termos h3 { font-size: 14px; }
+    .termos p  { font-size: 13px; line-height: 1.5; }
+}
+
+
+/*  RESPONSIVIDADE  */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .hero-box {
+        min-height: 300px;
+        padding: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .card {
+        flex: 0 0 300px;
+    }
+
+    .solucao-card {
+        flex: 0 0 200px;
+    }
+}
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 20px;
+    }
+
+    .hero-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+        line-height: 1.4;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    /* Cards em 2 colunas */
+    .carousel {
+        gap: 10px;
+    }
+
+    .card {
+        flex: 0 0 45%;
+    }
+
+    .solucao-card {
+        flex: 0 0 45%;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 15px;
+    }
+
+    .logo img {
+        width: 100px;
+        height: auto;
+    }
+
+    .hero-box {
+        min-height: 250px;
+        padding: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.2rem;
+    }
+
+    .btn,
+    .btn-2,
+    .btn-3,
+    .btn-4,
+    .btn-5 {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+
+    /* Cards viram 1 coluna */
+    .card,
+    .solucao-card {
+        flex: 0 0 100%;
+    }
+
+    form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-col {
+        flex: 1 1 100%;
+    }
+}
+
+/* ========== POLISH PACK (append-only) ========== */
+
+/* 1) Correção de cor faltando '#' (override sem alterar sua regra original) */
+.segmentos h2 { color: #262626; }
+
+/* 2) Acessibilidade: foco visível consistente */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.btn-card:focus-visible,
+.close:focus-visible,
+.menu:focus-visible,
+.carousel-container .prev:focus-visible,
+.carousel-container .next:focus-visible {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* 3) Suaviza fontes em vários SOs */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4) Carrossel mais “touch-friendly” */
+.carousel-container button {
+  padding: 12px;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* 5) Modal: conforto extra em telas com pouca altura */
+@media (max-height: 700px) {
+  .modal-content {
+    margin: 6% auto;
+    max-height: 82vh;
+  }
+}
+
+/* 6) Responsividade incremental (ajustes finos, sem mexer no seu layout base) */
+
+/* Laptops 1366px e similares */
+@media (max-width: 1366px) {
+  .footer-grid { gap: 6rem; }
+  .hero-box { padding: 30px; }
+}
+
+/* Tablets grandes (912px) */
+@media (max-width: 912px) {
+  .hero-box { min-height: 340px; }
+  .hero-content h1 { font-size: 1.6rem; }
+  .footer-grid { gap: 48px; }
+}
+
+/* Celulares grandes (<= 600px) */
+@media (max-width: 600px) {
+  .header { padding: 0 16px; }
+  .hero-box { min-height: 280px; }
+  .hero-content h1 {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+  .btn, .btn-2, .btn-3, .btn-4, .btn-5 {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+  .carousel { gap: 14px; }
+  .footer-grid { gap: 32px; }
+}
+
+/* Celulares médios (<= 480px) */
+@media (max-width: 480px) {
+  .hero-box {
+    min-height: 250px;
+    padding: 16px;
+  }
+  .hero-content h1 { font-size: 1.2rem; }
+  .hero-content p { font-size: 0.95rem; }
+  form {
+    width: 95%;
+    padding: 14px;
+  }
+}
+
+/* iPhone 8 / SE e similares (<= 375px) */
+@media (max-width: 375px) {
+  .header .logo img { height: 44px; }
+  .hero-box { min-height: 220px; }
+  .btn, .btn-2, .btn-3, .btn-4, .btn-5 {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+  .btn-card {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* 7) Preferência do usuário: reduz animações se o SO pedir */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .btn-card:hover { transform: none; }
 }

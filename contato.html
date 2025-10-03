@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Grupo Glatz - Tecnologia & Mobilidade</title>
     <link rel="stylesheet" href="style.css">
     <meta name="theme-color" content="#0A66C2" />
@@ -15,8 +14,6 @@
     <!-- Para navegadores que preferem PNG em alta definição -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/logoAba.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/logoAba.ico">
-
-
 </head>
 
 <body>
@@ -45,29 +42,46 @@
 
     <section class="parceria">
         <div class="parceria-img">
-            <img src="assets/Heros/ParceriaSobre.png" alt="Reunião da empresa">
+            <img src="assets/EmpresaOutsourcing.png" alt="Reunião da empresa">
         </div>
         <div class="parceria-texto">
             <h2>EMPRESA PARCEIRA DOS<br>MAIORES DISTRIBUIDORES<br>DE TI DO BRASIL</h2>
         </div>
     </section>
-    <section class="sobre" id="sobre">
-        <div class="container">
-            <h2>Sobre</h2>
-            <p>
-                O GRUPO GLATZ é uma empresa nacional que tem como propósito, conectar as necessidades de grandes
-                empresas
-                com os maiores distribuidores de TI do Brasil.
-            </p>
-            <p>
-                Somos especialistas em outsourcing de estrutura básica de TI, locação de impressoras, computadores,
-                notebooks, gerenciamento de dados, inclusive venda de equipamentos.
-            </p>
-            <p>
-                Fornecer soluções inovadoras e personalizadas para empresas em todo território nacional.
-            </p>
+    <!-- Formulário -->
+    <form id="formulario" autocomplete="on">
+        <!-- Cliente -->
+        <label for="cliente">Sua Empresa</label>
+        <input type="text" id="cliente" name="cliente" required>
+
+        <!-- CNPJ -->
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00" required>
+
+        <!-- Contato -->
+        <label for="contato">Seu Nome Completo</label>
+        <input type="text" id="contato" name="contato" required>
+
+        <div class="row">
+            <div class="col">
+                <label for="telefone">Telefone / Whatsapp *</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 0000-0000" required>
+            </div>
+            <div class="col">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required>
+            </div>
         </div>
-    </section>
+        </div>
+
+        <label for="descricao">Mensagem</label>
+        <textarea id="descricao" name="descricao" rows="4"
+            placeholder="Detalhe a sua necessidade com o máximo de informações" required></textarea>
+
+        <button type="button" id="enviarWhats">Enviar pelo WhatsApp</button>
+    </form>
+
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-inner">
@@ -116,6 +130,82 @@
             </div>
         </div>
     </footer>
+
+    <!--Script do formulário CNPJ e NUMERO-TELEFONE-->>
+    <script>
+        // ======= MÁSCARA GENÉRICA =======
+        function aplicarMascara(input, regex, replacer, maxLen) {
+            input.addEventListener("input", () => {
+                let valor = input.value.replace(/\D/g, "").slice(0, maxLen);
+                input.value = valor.replace(regex, replacer);
+            });
+        }
+
+        // ======= CNPJ =======
+        const cnpjInput = document.getElementById("cnpj");
+
+        // Máscara
+        aplicarMascara(
+            cnpjInput,
+            /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
+            "$1.$2.$3/$4-$5",
+            14
+        );
+
+        // Validação simplificada: apenas 14 dígitos
+        function validarCNPJ(cnpj) {
+            cnpj = cnpj.replace(/\D/g, ""); // remove não dígitos
+            return cnpj.length === 14;      // só verifica quantidade
+        }
+
+        // Quando sair do campo (blur), valida
+        cnpjInput.addEventListener("blur", () => {
+            if (cnpjInput.value && !validarCNPJ(cnpjInput.value)) {
+                cnpjInput.setCustomValidity("CNPJ deve conter 14 dígitos");
+            } else {
+                cnpjInput.setCustomValidity("");
+            }
+        });
+
+        // ======= TELEFONE =======
+        const telInput = document.getElementById("telefone");
+        telInput.addEventListener("input", () => {
+            let v = telInput.value.replace(/\D/g, "").slice(0, 11);
+
+            // celular (11 dígitos) ou fixo (10 dígitos)
+            telInput.value = v.length > 10
+                ? v.replace(/^(\d{2})(\d)(\d{4})(\d{4})$/, "($1) $2 $3-$4")
+                : v.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3");
+        });
+    </script>
+
+    <!-- Script do Whats -->
+    <script>
+        document.getElementById("enviarWhats").addEventListener("click", function () {
+            const cliente = document.getElementById("cliente").value;
+            const cnpj = document.getElementById("cnpj").value;
+            const contato = document.getElementById("contato").value;
+            const telefone = document.getElementById("telefone").value;
+            const email = document.getElementById("email").value;
+            const descricao = document.getElementById("descricao").value;
+
+            const mensagem =
+                `Cliente: ${cliente}
+CNPJ: ${cnpj}
+Contato: ${contato}
+Telefone: ${telefone}
+E-mail: ${email}
+Descrição: ${descricao}`;
+
+            const numero = "554733044033";
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank", "noopener,noreferrer");
+        });
+    </script>
+
+
+
+
     <script>
         const menuBtn = document.querySelector('.menu');
         const menuOverlay = document.getElementById('menuOverlay');
