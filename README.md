@@ -14,4 +14,4 @@ Telas **Mostrando nossos produtos**, **Entrar em contato**, **Termos de uso** e 
 ## 📷 Demonstração das Telas
 
 ### 🔑 Tela Principal
-![Tela de Login](./assets/screen-shots/Captura%20de%20tela%202025-10-01%20160929.png)
+![Tela de Login](./assets/readme1.png)
