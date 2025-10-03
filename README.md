@@ -16,4 +16,4 @@ Telas **Mostrando nossos produtos**, **Entrar em contato**, **Termos de uso** e 
 ### 🔑 Tela Principal
 ![Tela de Login](./assets/readme1.png)
 
-![Tela para Contato](.asset/readme2.png)
+![Tela para Contato](.assets/readme2.png)
